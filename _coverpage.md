@@ -10,8 +10,8 @@
 - Well tested and documented
 - Inspired by Pine Script
 
-[GitHub](https://github.com/docsifyjs/docsify/)
-[Get Started](#docsify)
+[GitHub](https://github.com/bulltimate/vista)
+[Get Started](#README)
 
 <!-- background color -->
 
