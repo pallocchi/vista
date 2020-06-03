@@ -1,5 +1,5 @@
 * [**Home**](/README.md)
 * [**Trend indicators**](/trend.md)
 * [**Momentum indicators**](/momentum.md)
-* [**Volatility indicatos**](/volatility.md)
+* [**Volatility indicators**](/volatility.md)
 * [**Volume indicators**](/volume.md)

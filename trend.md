@@ -34,7 +34,6 @@ The previous value is 1.5
 The oldest value is NaN
 ```
 
-
 More? see [Investopedia](https://www.investopedia.com/terms/s/sma.asp)
 
 ## Exponential Moving Average (EMA)
@@ -135,11 +134,11 @@ where:
 
 $x$ = the price series
 
-$a$ = the number of periods of the fast ema (usually `12`)
+$a$ = the number of periods of the fast ema (typically `12`)
 
-$b$ = the number of periods of the slow sma (usually `26`)
+$b$ = the number of periods of the slow sma (typically `26`)
 
-$c$ = the number of periods of the signal line (usually `9`)
+$c$ = the number of periods of the signal line (typically `9`)
 
 **Code!**
 
@@ -148,7 +147,6 @@ val values = IntArray(50) { it }
 
 val series = seriesOf(*values)
 
-// the default arguments are explicitly passed just for learning purposes
 val (macd, signal, hist) = macd(series, 12, 26, 9)
 
 println("The current macd value is ${macd[0]}")

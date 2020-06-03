@@ -18,6 +18,8 @@ More? see [Investopedia](https://www.investopedia.com/terms/c/commoditychannelin
 
 A relative strength index (RSI) is a momentum indicator used in technical analysis that measures the magnitude of recent price changes to evaluate overbought or oversold conditions in the price of a stock or other asset. The RSI is displayed as an oscillator (a line graph that moves between two extremes) and can have a reading from 0 to 100.
 
+**Formula**
+
 $rsi(x,n) = [100 - \frac{100}{(1 + \frac{\small\overline{G}}{\small\overline{L}})}]$
 
 $\overline{G}$ (average gain) $= rma(max(x - x_1, 0), n)$
@@ -28,9 +30,9 @@ where:
 
 $x$ = the price series
 
-$n$ = the number of periods (usually `14`)
+$n$ = the number of periods (typically `14`)
 
-$rma$ = the exponential moving average with $alpha = \frac{1}{n}$
+$rma$ = the [EMA](/trend?id=exponential-moving-average-ema) with $alpha = \frac{1}{n}$
 
 **Code!**
 

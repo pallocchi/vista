@@ -1,3 +1,3 @@
 # Vista, technical analysis
 
-> An awesome project.
+!> Vista is currently under heavy development 🛠

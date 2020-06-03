@@ -13,6 +13,10 @@
     .app-name {
       width: 100px;
     }
+
+    a {
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -24,6 +28,7 @@
       repo: 'bulltimate/vista',
       coverpage: true,
       loadSidebar: true,
+      auto2top: true,
       subMaxLevel: 2,
       themeColor: '#03DAC6',
       logo: '/_media/logo.svg',
@@ -36,6 +41,20 @@
           '/': 'search...'
         }
       },
+      plugins: [
+        function (hook) {
+          var footer = [
+            '<hr/>',
+            '<footer>',
+            '<span>Made with ❤️ by <a href="https://github.com/pallocchi" target="_blank">Pablo Pallocchi</a>.</span>',
+            '</footer>'
+          ].join('');
+
+          hook.afterEach(function (html) {
+            return html + footer;
+          });
+        }
+      ]
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
