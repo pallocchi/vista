@@ -6,6 +6,39 @@ Momentum is the measurement of the speed or velocity of price changes. These ind
 
 A stochastic oscillator is a momentum indicator comparing a particular closing price of a security to a range of its prices over a certain period of time. The sensitivity of the oscillator to market movements is reducible by adjusting that time period or by taking a moving average of the result. It is used to generate overbought and oversold trading signals, utilizing a 0-100 bounded range of values.
 
+$\%K = \bigg(\frac{close - lowest(low,n)}{highest(high,n) - lowest(low,n)}\bigg) * 100$
+
+$\%D = sma(\%K,3)$
+
+where:
+
+$n$ = the number of periods (typically `14`)
+
+$highest(high,n)$ = the highest high price in $n$ periods back
+
+$lowest(low,n)$ = the lowest low price in $n$ periods back
+
+> An extra sma is typically applied to the %K to smooth the line (before calculate %D).
+
+**Code!**
+
+```kotlin
+val close = seriesOf(*IntArray(50) { it })
+
+val low = seriesOf(*IntArray(50) { it - it % 2 })
+val high = seriesOf(*IntArray(50) { it + it % 2 })
+
+val (k, d) = stoch(close, high, low)
+
+println("The current %K value is ${k[0]}")
+println("The current %D value is ${d[0]}")
+```
+
+```output
+The current %K value is 95.24...
+The current %D value is 96.03...
+```
+
 More? see [Investopedia](https://www.investopedia.com/terms/s/stochasticoscillator.asp)
 
 ## Commodity Channel Index (CCI)
