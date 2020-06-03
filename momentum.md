@@ -18,25 +18,23 @@ $highest(high,n)$ = the highest high price in $n$ periods back
 
 $lowest(low,n)$ = the lowest low price in $n$ periods back
 
-> An extra sma is typically applied to the %K to smooth the line (before calculate %D).
-
 **Code!**
 
 ```kotlin
-val close = seriesOf(*IntArray(50) { it })
+val close = seriesOf(1..20)
 
-val low = seriesOf(*IntArray(50) { it - it % 2 })
-val high = seriesOf(*IntArray(50) { it + it % 2 })
+val high  = close * 1.5
+val low   = close * 0.5
 
 val (k, d) = stoch(close, high, low)
 
-println("The current %K value is ${k[0]}")
-println("The current %D value is ${d[0]}")
+println("The %K of current period is ${k[0]}")
+println("The %D of current period is ${d[0]}")
 ```
 
 ```output
-The current %K value is 95.24...
-The current %D value is 96.03...
+The %K of current period is 62.76...
+The %D of current period is 63.29...
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/s/stochasticoscillator.asp)
@@ -76,13 +74,13 @@ val series = seriesOf(*values)
 
 val rsi = rsi(series, 14)
 
-println("The current value is ${rsi[0]}")
-println("The previous value is ${rsi[1]}")
+println("The RSI(14) of current period is ${rsi[0]}")
+println("The RSI(14) of previous period is ${rsi[1]}")
 ```
 
 ```output
-The current value is 53.09...
-The previous value is 49.30...
+The RSI(14) of current period is 53.09...
+The RSI(14) of previous period is 49.30...
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/r/rsi.asp)

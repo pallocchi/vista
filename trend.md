@@ -23,15 +23,15 @@ val series = seriesOf(1, 2, 3)
 
 val sma = sma(series, 2)
 
-println("The current value is ${sma[0]}")
-println("The previous value is ${sma[1]}")
-println("The oldest value is ${sma[2]}")
+println("The SMA(2) of current period is ${sma[0]}")
+println("The SMA(2) of previous period is ${sma[1]}")
+println("The SMA(2) of the oldest period is ${sma[2]}")
 ```
 
 ```console
-The current value is 2.5
-The previous value is 1.5
-The oldest value is NaN
+The SMA(2) of current period is 2.5
+The SMA(2) of previous period is 1.5
+The SMA(2) of the oldest period is NaN
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/s/sma.asp)
@@ -59,15 +59,15 @@ val series = seriesOf(1, 2, 3)
 
 val ema = ema(series, 2)
 
-println("The current value is ${ema[0]}")
-println("The previous value is ${ema[1]}")
-println("The oldest value is ${ema[2]}")
+println("The EMA(2) of current period is ${ema[0]}")
+println("The EMA(2) of previous period is ${ema[1]}")
+println("The EMA(2) of the oldest period is ${ema[2]}")
 ```
 
 ```console
-The current value is 2.5
-The previous value is 1.5
-The oldest value is NaN
+The EMA(2) of current period is 2.5
+The EMA(2) of previous period is 1.5
+The EMA(2) of the oldest period is NaN
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/e/ema.asp)
@@ -95,15 +95,15 @@ val series = seriesOf(1, 2, 3)
 
 val wma = wma(series, 2)
 
-println("The current value is ${wma[0]}")
-println("The previous value is ${wma[1]}")
-println("The oldest value is ${wma[2]}")
+println("The WMA(2) of current period is ${wma[0]}")
+println("The WMA(2) of previous period is ${wma[1]}")
+println("The WMA(2) of the oldest period is ${wma[2]}")
 ```
 
 ```console
-The current value is 2.67
-The previous value is 1.67
-The oldest value is NaN
+The WMA(2) of current period is 2.67
+The WMA(2) of previous period is 1.67
+The WMA(2) of the oldest period is NaN
 ```
 
 More? see [Fidelity](https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/wma)
@@ -115,6 +115,24 @@ A hull moving average (HMA), developed by Alan Hull, is an extremely fast and sm
 **Formula**
 
 $hma(x,n) = wma(2 * wma(x,n/2) − wma(x,n)), sqrt(n))$
+
+**Code!**
+
+```kotlin
+val series = seriesOf(1, 2, 3)
+
+val hma = hma(series, 2)
+
+println("The HMA(2) of current period is ${hma[0]}")
+println("The HMA(2) of previous period is ${hma[1]}")
+println("The HMA(2) of the oldest period is ${hma[2]}")
+```
+
+```console
+The HMA(2) of current period is 3.33
+The HMA(2) of previous period is 2.33
+The HMA(2) of the oldest period is NaN
+```
 
 More? see [Alan Hull](https://alanhull.com/hull-moving-average)
 
@@ -143,21 +161,19 @@ $c$ = the number of periods of the signal line (typically `9`)
 **Code!**
 
 ```kotlin
-val values = IntArray(50) { it }
-
-val series = seriesOf(*values)
+val series = seriesOf(1..50)
 
 val (macd, signal, hist) = macd(series, 12, 26, 9)
 
-println("The current macd value is ${macd[0]}")
-println("The current signal value is ${signal[0]}")
-println("The current histogram value is ${hist[0]}")
+println("The MACD of current period is ${macd[0]}")
+println("The signal line of current period is ${signal[0]}")
+println("The histogram line of current period is ${hist[0]}")
 ```
 
 ```output
-The current macd value is 7
-The current signal value is 7
-The current histogram value is 0
+The MACD of current period is 7
+The signal line of current period is 7
+The histogram line of current period is 0
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/m/macd.asp)

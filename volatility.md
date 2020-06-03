@@ -24,22 +24,22 @@ $m$ = the standard deviation factor (typically `2`)
 
 $\sigma$ = the standard deviation
 
-```kotlin
-val values = IntArray(50) { it }
+**Code!**
 
-val series = seriesOf(*values)
+```kotlin
+val series = seriesOf(1..50)
 
 val (middle, upper, lower) = bb(series, 20, 2)
 
-println("The current middle band value is ${middle[0]}")
-println("The current upper band value is ${upper[0]}")
-println("The current lower band value is ${lower[0]}")
+println("The middle band value of current period is ${middle[0]}")
+println("The upper band value of current period is ${upper[0]}")
+println("The lower band value of current period is ${lower[0]}")
 ```
 
 ```console
-The current middle band value is 39.50...
-The current upper band  value is 51.03...
-The current lower band value is 27.97...
+The middle band value of current period is 40.50...
+The upper band value of current period is 52.03...
+The lower band value of current period is 28.97...
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/b/bollingerbands.asp)
@@ -47,6 +47,38 @@ More? see [Investopedia](https://www.investopedia.com/terms/b/bollingerbands.asp
 ## Average True Range (ATR)
 
 The average true range (ATR) is a technical analysis indicator that measures market volatility by decomposing the entire range of an asset price for that period. Specifically, ATR is a measure of volatility introduced by market technician J. Welles Wilder Jr. in his book, "New Concepts in Technical Trading Systems."
+
+**Formula**
+
+$tr = max((high-low), abs(high-close_1), abs(low-close_1))$
+
+$atr(n) = \frac{1}{n}\sum_{i=1}^n(tr_i)$
+
+where:
+
+$n$ = the number of periods (typically `14`)
+
+$close_1$ = the close price of previous period
+
+
+**Code!**
+
+```kotlin
+val close = seriesOf(1..20)
+
+val high  = close * 1.5
+val low   = close * 0.5
+
+val atr = atr(close, high, low, 14)
+
+println("The ATR(14) of current period is ${atr[0]}")
+println("The ATR(14) of previous value is ${atr[1]}")
+```
+
+```output
+The ATR(14) of current period is 11.17...
+The ATR(14) of previous period is 10.49...
+```
 
 More? see [Investopedia](https://www.investopedia.com/terms/a/atr.asp)
 
@@ -69,15 +101,13 @@ val series = seriesOf(1, 2, 4)
 
 val stdev = stdev(series, 2)
 
-println("The current value is ${stdev[0]}")
-println("The previous value is ${stdev[1]}")
-println("The oldest value is ${stdev[2]}")
+println("The standard deviation of current period is ${stdev[0]}")
+println("The standard deviation of previous period is ${stdev[1]}")
 ```
 
 ```console
-The current value is 1
-The previous value is 0.5
-The oldest value is NaN
+The standard deviation of current period is 1
+The standard deviation of previous period is 0.5
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/s/standarddeviation.asp)
