@@ -154,7 +154,7 @@ $x$ = the price series
 
 $a$ = the number of periods of the fast ema (typically `12`)
 
-$b$ = the number of periods of the slow sma (typically `26`)
+$b$ = the number of periods of the slow ema (typically `26`)
 
 $c$ = the number of periods of the signal line (typically `9`)
 

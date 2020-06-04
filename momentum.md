@@ -43,6 +43,34 @@ More? see [Investopedia](https://www.investopedia.com/terms/s/stochasticoscillat
 
 A commodity channel index​ (CCI) is a momentum-based oscillator used to help determine when an investment vehicle is reaching a condition of being overbought or oversold. It is also used to assess price trend direction and strength.
 
+**Formula**
+
+$cci(x,n) = \frac{\small x - sma(x,n)}{\small .015 * dev(x,n)}$
+
+$dev(x,n) = \frac{1}{n} * \sum_{i=1}^n |x - sma(x,n)|$
+
+where:
+
+$x$ = the price series (usually the typical price)
+
+$n$ = the number of periods (typically `20`)
+
+**Code!**
+
+```kotlin
+val series = seriesOf(1..25)
+
+val cci = cci(series, 20)
+
+println("The CCI(20) of current period is ${cci[0]}")
+```
+
+```output
+The CCI(20) of current period is 126.67...
+```
+
+> Use the `typical()` series if you want to calculate the CCI of the typical price.
+
 More? see [Investopedia](https://www.investopedia.com/terms/c/commoditychannelindex.asp)
 
 ## Relative Strength Index (RSI)
@@ -68,19 +96,15 @@ $rma$ = the [EMA](/trend?id=exponential-moving-average-ema) with $alpha = \frac{
 **Code!**
 
 ```kotlin
-val values = IntArray(20) { it % 2 }
-
-val series = seriesOf(*values)
+val series = seriesOf(1..20)
 
 val rsi = rsi(series, 14)
 
 println("The RSI(14) of current period is ${rsi[0]}")
-println("The RSI(14) of previous period is ${rsi[1]}")
 ```
 
 ```output
-The RSI(14) of current period is 53.09...
-The RSI(14) of previous period is 49.30...
+The RSI(14) of current period is 100
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/r/rsi.asp)
