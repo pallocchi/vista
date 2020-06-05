@@ -114,8 +114,34 @@ The OBV of previous period is 2
 
 More? see [Investopedia](https://www.investopedia.com/terms/o/onbalancevolume.asp)
 
-## Volume Rate of Change
+## Volume Rate of Change (VROC)
 
 The volume rate of change is an indicator that shows whether or not a volume trend is developing in either an up or down direction. To calculate this, you need to divide the volume change over the last n-periods (days, weeks or months) by the volume n-periods ago. The answer is a percentage change of the volume over the last n-periods. Now, what does this mean? If the volume today is higher than n-days (or weeks or months) ago, the rate of change will be a plus number. If volume is lower, the ROC will be minus number. This allows us to look at the speed at which the volume is changing.
+
+**Formula**
+
+$VROC = \frac{\small volume - volume_n}{\small volume_n} * 100$
+
+where:
+
+$volume$ = the volume of current period
+
+$volume_n$ = the volume of `n` periods back
+
+**Code!**
+
+```kotlin
+val volume = seriesOf(1..20)
+
+val vroc = roc(volume, 14)
+
+println("The VROC of current period is ${vroc[0]}")
+println("The VROC of previous period is ${vroc[1]}")
+```
+
+```output
+The VROC of current period is 233.33...
+The VROC of previous period is 280
+```
 
 More? see [Investopedia](https://www.investopedia.com/articles/technical/02/091002.asp)

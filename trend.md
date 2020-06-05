@@ -116,6 +116,12 @@ A hull moving average (HMA), developed by Alan Hull, is an extremely fast and sm
 
 $hma(x,n) = wma(2 * wma(x,n/2) − wma(x,n)), sqrt(n))$
 
+where:
+
+$x$ = the price series
+
+$n$ = the number of periods
+
 **Code!**
 
 ```kotlin
