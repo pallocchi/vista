@@ -78,6 +78,40 @@ More? see [Investopedia](https://www.investopedia.com/terms/c/chaikinoscillator.
 
 On-balance volume (OBV) is a technical trading momentum indicator that uses volume flow to predict changes in stock price. Joseph Granville first developed the OBV metric in the 1963 book Granville's New Key to Stock Market Profits. He believed that when volume increases sharply without a significant change in the stock's price, the price will eventually jump upward or fall downward.
 
+**Formula**
+
+$
+OBV = OBV_1 + 
+\begin{cases}
+   volume   &\text{if } close > close_1 \\
+   0        &\text{if } close = close_1 \\
+   -volume  &\text{if } close < close_1
+\end{cases}
+$
+
+where:
+
+$OBV$ = the on-balance volume of current period
+
+$OBV_1$ = the on-balance volume of previous period
+
+**Code!**
+
+```kotlin
+val close = seriesOf(1, 2, 1)
+val volume = seriesOf(1, 2, 1)
+
+val obv = obv(close, volume)
+
+println("The OBV of current period is ${obv[0]}")
+println("The OBV of previous period is ${obv[1]}")
+```
+
+```output
+The OBV of current period is 1
+The OBV of previous period is 2
+```
+
 More? see [Investopedia](https://www.investopedia.com/terms/o/onbalancevolume.asp)
 
 ## Volume Rate of Change
