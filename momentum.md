@@ -6,6 +6,8 @@ Momentum is the measurement of the speed or velocity of price changes. These ind
 
 A stochastic oscillator is a momentum indicator comparing a particular closing price of a security to a range of its prices over a certain period of time. The sensitivity of the oscillator to market movements is reducible by adjusting that time period or by taking a moving average of the result. It is used to generate overbought and oversold trading signals, utilizing a 0-100 bounded range of values.
 
+**Formula**
+
 $\%K = \bigg(\frac{close - lowest(low,n)}{highest(high,n) - lowest(low,n)}\bigg) * 100$
 
 $\%D = sma(\%K,3)$
