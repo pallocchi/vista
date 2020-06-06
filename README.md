@@ -1,3 +1,199 @@
 # Vista, technical analysis
 
 !> Vista is currently under heavy development 🛠
+
+Vista is a technical analysis library for Kotlin, inspired in [Pine Script][ps] from TradingView.
+
+```kotlin
+val fast = sma(close, 9)
+val slow = sma(close, 30)
+
+when {
+    fast crossOver slow -> print("I'm going long!")
+    fast crossUnder slow -> print("I'm going short!")
+}
+```
+
+# Loading the market data
+
+All starts with... data! before using any indicator, you have to load the market data.
+
+```kotlin
+val data = Data()
+
+data.add(
+  Data.Bar(
+    date = "05/29/2020",
+    open = 2361.01,
+    high = 2391.37,
+    low = 2353.21,
+    close = 2388.85,
+    volume = 3648128.0
+  )
+)
+```
+
+Now you have your first bar! let's see what we can do with this in the next section.
+
+# Working with series
+
+Almost anything in Vista is a series, that's why it's the most important thing you need to learn. Series are structures that allow us to use the data in a more fashion way. 
+
+Let's start with a simple series of numbers:
+
+```kotlin
+val series = seriesOf(1,2,3)
+```
+
+The `seriesOf` function is a simple way to create a series and it's enough for this example. 
+
+## Accesing values
+
+So, we have our series, let's try to get its values:
+
+```kotlin
+val lastValue = series.value // lastValue is 3
+```
+
+The `value` field of a series holds the last value, in this case, `3`. How can I get the previous one?
+
+```kotlin
+val previousValue = series[1].value // previousValue is 2
+val oldestValue = series[2].value   // oldestValue is 1
+```
+
+Since Vista is inspired in [Pine Script][ps], the way to get values from a series is pretty similar, using the array accesory `[]` and passing as an argument the number of periods to look back. You may be wondering why you need to use the `value` field, the answer is: because the array accesor also returns a series, where the orginal one was shifted by `n` periods. In fact, doing `series.value` is actually the same as `series[0].value`, but in a more concise way. 
+
+This is the foundation which allow us to perform complex operations with series in a super simple and intuitive way.
+
+## Operators and series
+
+Series can be operated just like numbers:
+
+```kotlin
+val x = seriesOf(1,2,3)
+val y = seriesOf(2,4,6)
+
+val sum = y + x // sum is (3,6,9)
+val dif = y - x // dif is (1,2,3)
+val mul = y * x // mul is (2,8,18)
+val div = y / x // div is (2,2,2)
+```
+
+and it also works for numbers:
+
+```kotlin
+val x = seriesOf(1,2,3)
+
+val sum = x + 1 // sum is (2,3,4)
+```
+
+## Working with previous periods
+
+Let's suppose we want to calculate the change between the current value, and the previous one.
+
+$change(x) = x - x_1$
+
+> Note in this guide we use $x_1$ to represent the previous value
+
+Based on the concepts we've just learned, the implementation is as simple as this:
+
+```kotlin
+val x = seriesOf(1,3,6)
+
+val change = x - x[1] // change is (2,3)
+```
+
+Since `x[1]` returns a series, we are getting the difference between both series: the original and the [shifted](#accesing-values) one.
+
+## Basic series
+
+We saw the `seriesOf` function which is really useful to learn Vista, but it's more likely you use what we call the basic series, which are basically views of the [data](#data) you already know. These are the `open`, `high`, `low`, `close` and `volume` series, that can be created using the homonymous functions.
+
+```kotlin
+val open = open(data)       // series of close prices
+val high = high(data)       // series of high prices
+val low = low(data)         // series of low prices
+val close = close(data)     // series of close prices
+val volume = volume(data)   // series of volume prices
+```
+
+Based on the previous series, we can derive another one called the typical price.
+
+$typical = \frac{\small close + high + low}{3}$
+
+Since this series is widely used, we have the built-in function `typical()`.
+
+```kotlin
+val typical = typical(data) // series of typical prices
+```
+
+# Introduction to indicators
+
+The core of the technical analysis are indicators. Vista has many common indicators out of the box that you can find in next sections of this guide, and many others are comming in next releases. But in any case you can always create your custom indicators in a really simple way, using the functions already supported by Vista. 
+
+For instance, let's see how we can implement the classic MACD indicator, which is calculated by subtracting the 26-period exponential moving average (EMA) from the 12-period EMA. This is the Vista-way to create it:
+
+```kotlin
+fun macd(source: Series) = ema(source, 26) - ema(source, 12)
+```
+
+Simple, right? now you can use your new indicator just like `macd(close)`. Of course you don't actually need to implement this indicator since Vista has a built-in [function][macd] for that, but it's a great example of how you can create new indicators based on the already implemeted ones, thanks to the fluidity of working with series.
+
+?> Vista only performs the calculation of the values when they are actually needed.
+
+### Built-in indicators
+
+| Name                                                     | Type       | Leading | Lagging | Since |
+|----------------------------------------------------------|:----------:|:-------:|:-------:|:-----:|
+| [Accumulation/Distribution (ADL)][adl]                   | Volume     | ✔       | -       | 0.1.0 |
+| [Average True Range (ATR)][atr]                          | Volatility | -       | ✔       | 0.1.0 |
+| [Bollinger Bands®][bb]                                   | Volatility | -       | ✔       | 0.1.0 |
+| [Chainkin Oscillator][chaikin]                           | Volume     | ✔       | -       | 0.1.0 |
+| [Commodity Channel Index (CCI)][cci]                     | Momentum   | ✔       | -       | 0.1.0 |
+| [Exponential Moving Average (EMA)][ema]                  | Trend      | -       | ✔       | 0.1.0 |
+| [Hull Moving Average (HMA)][hma]                         | Trend      | -       | ✔       | 0.1.0 |
+| [Moving Average Convergence/Divergence (MACD)][macd]     | Trend      | ✔       | -       | 0.1.0 |
+| [On-Balance Volume (OBV)][obv]                           | Volume     | ✔       | -       | 0.1.0 |
+| [Relative Strength Index (RSI)][rsi]                     | Momentum   | ✔       | -       | 0.1.0 |
+| [Simple Moving Average (SMA)][sma]                       | Trend      | -       | ✔       | 0.1.0 |
+| [Standard Deviation][stdev]                              | Volatility | -       | ✔       | 0.1.0 |
+| [Stochastic Oscillator][stoch]                           | Momentum   | ✔       | -       | 0.1.0 |
+| [Volume Rate of Change (VROC)][vroc]                     | Volume     | -       | ✔       | 0.1.0 |
+| [Weighted Moving Average (WMA)][wma]                     | Trend      | -       | ✔       | 0.1.0 |
+
+# About rules and strategies
+
+Rules are the way to detect entry and exit signals. Let's suppose we want to implement a classic strategy of moving average crossovers. This strategy uses two simple moving averages (SMA) with different periods (slow and fast), and we want to go long whenever the 9-period SMA crosses over the 30-period SMA, and go short when the frist one crosses under the other. In order to do that, we have the `crossOver` and `crossUnder` rules, which are available in any series and we can use that in this way:
+
+```kotlin
+val fast = sma(close, 9)
+val slow = sma(close, 30)
+
+when {
+    fast crossOver slow -> print("I'm going long!")
+    fast crossUnder slow -> print("I'm going short!")
+}
+```
+
+Amazing! we've just implemented our very basic strategy.
+
+If you are familiar with [Pine Script][ps], you can also use the `crossover()` and `crossunder()` functions and it works in the same way (actually those functions use the previous ones under the covers). Take a look at the KDoc.
+
+[ps]: https://www.tradingview.com/pine-script-docs/en/v4/Introduction.html
+
+[adl]: volume?id=accumulationdistribution-adl
+[atr]: volatility?id=average-true-range-atr
+[bb]: volatility?id=bollinger-bands®
+[chaikin]: volume?id=chainkin-oscillator
+[cci]: momentum?id=commodity-channel-index-cci
+[ema]: trend?id=exponential-moving-average-ema
+[hma]: trend?id=hull-moving-average-hma
+[macd]: trend?id=moving-average-convergencedivergence-macd
+[obv]: volume?id=on-balance-volume-obv
+[rsi]: momentum?id=relative-strength-index-rsi
+[sma]: trend?id=simple-moving-average-sma
+[stdev]: volatility?id=standard-deviation
+[stoch]: momentum?id=stochastic-oscillator
+[vroc]: volume?id=volume-rate-of-change-vroc
+[wma]: trend?id=weighted-moving-average-wma

@@ -1,4 +1,4 @@
-* [**Home**](/README.md)
+* [**Getting Started**](/README.md)
 * [**Trend indicators**](/trend.md)
 * [**Momentum indicators**](/momentum.md)
 * [**Volatility indicators**](/volatility.md)

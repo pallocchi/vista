@@ -4,14 +4,13 @@
 
 # <small>0.1.0</small>
 
-> A modern technical analysis library.
+> A modern technical analysis library for Kotlin.
 
-- Simple and lightweight (~21kB gzipped)
-- Well tested and documented
-- Inspired by Pine Script
+- Simple and concise
+- Inspired by [Pine Script](https://www.tradingview.com/pine-script-docs/en/v4/Introduction.html)
 
 [GitHub](https://github.com/bulltimate/vista)
-[Get Started](#README)
+[Get Started](README)
 
 <!-- background color -->
 
