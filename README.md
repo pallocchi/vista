@@ -1,4 +1,4 @@
-# Vista, technical analysis
+# Vista, technical analysis for [Kotlin](https://github.com/bulltimate/vista-kt)
 
 !> Vista is currently under heavy development 🛠
 
