@@ -52,19 +52,17 @@ The `seriesOf` function is a simple way to create a series and it's enough for t
 So, we have our series, let's try to get its values:
 
 ```kotlin
-val lastValue = series.value // lastValue is 3
+val lastValue = series[0]       // last value is 3
+val previousValue = series[1]   // previous value is 2
+val oldestValue = series[2]     // oldest value is 1
 ```
 
-The `value` field of a series holds the last value, in this case, `3`. How can I get the previous one?
+Since Vista is inspired in [Pine Script][ps], the way to get values from a series is pretty similar, using the array accesory `[]` and passing as an argument the number of periods to look back. Fortunately, since the last and previous values are frequently used, we provide a shortcut to get these values: `last` and `prev` fields.
 
 ```kotlin
-val previousValue = series[1].value // previousValue is 2
-val oldestValue = series[2].value   // oldestValue is 1
+val lastValue = series.last       // same as series[0]
+val previousValue = series.prev   // same as series[1]
 ```
-
-Since Vista is inspired in [Pine Script][ps], the way to get values from a series is pretty similar, using the array accesory `[]` and passing as an argument the number of periods to look back. You may be wondering why you need to use the `value` field, the answer is: because the array accesor also returns a series, where the orginal one was shifted by `n` periods. In fact, doing `series.value` is actually the same as `series[0].value`, but in a more concise way. 
-
-This is the foundation which allow us to perform complex operations with series in a super simple and intuitive way.
 
 ## Operators and series
 
@@ -90,21 +88,39 @@ val sum = x + 1 // sum is (2,3,4)
 
 ## Working with previous periods
 
-Let's suppose we want to calculate the change between the current value, and the previous one.
+As you already know, using the `[]` accesory in a series you can get values from past periods, for instance, with `x[1]` you get the previous value of the `x` series. But now let's suppose we want to create a series which is the change between the value at a given period, and the previous one:
 
 $change(x) = x - x_1$
 
 > Note in this guide we use $x_1$ to represent the previous value
 
-Based on the concepts we've just learned, the implementation is as simple as this:
+We need to create another series which is the original one ($x$) but delayed by 1 period.
+
+#### Shifting series
+
+Using the invoke operator like `(n)` we can delay a series by `n` periods.
+
+```kotlin
+val x = seriesOf(1,2,3) // x is (1,2,3)
+val y = x(1)            // y is (1,2)
+
+print("The last value in x is ${x.last}")
+print("The last value in y is ${y.last}")
+```
+```output
+The last value in x is 3
+The last value in y is 2
+```
+
+So back to our example, we can implement the `change()` function in this way:
 
 ```kotlin
 val x = seriesOf(1,3,6)
 
-val change = x - x[1] // change is (2,3)
+val change = x - x(1) // change is (2,3)
 ```
 
-Since `x[1]` returns a series, we are getting the difference between both series: the original and the [shifted](#accesing-values) one.
+Since `x(1)` returns a series, we are getting the difference between both series: the original and the [shifted](#shifting-series) one.
 
 ## Basic series
 
