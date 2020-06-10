@@ -2,6 +2,37 @@
 
 Momentum is the measurement of the speed or velocity of price changes. These indicators identify the strength of a price movement, comparing the most recent closing price to a previous closing price from any time frame.
 
+## Awesome Oscillator
+
+The Awesome Oscillator (AO) is an indicator used to measure market momentum. AO calculates the difference between a 34-period simple moving average (SMA) and 5-period SMA. The simple moving averages that are used are not calculated using closing price but rather each bar's midpoints. AO is generally used to affirm trends or to anticipate possible reversals.
+
+**Formula**
+
+$AO = sma(mid, 5) - sma(mid, 34)$
+
+where:
+
+$mid$ = $(high+low) / 2$
+
+**Code!**
+
+```kotlin
+val close = seriesOf(1..20)
+
+val high  = close * 1.5
+val low   = close * 0.5
+
+val ao = ao(high, low)
+
+println("The AO of current period is ${ao[0]}")
+```
+
+```output
+The AO of current period is 14.5
+```
+
+More? see [Tradingview](https://www.tradingview.com/scripts/awesomeoscillator/?solution=43000501826)
+
 ## Stochastic Oscillator
 
 A stochastic oscillator is a momentum indicator comparing a particular closing price of a security to a range of its prices over a certain period of time. The sensitivity of the oscillator to market movements is reducible by adjusting that time period or by taking a moving average of the result. It is used to generate overbought and oversold trading signals, utilizing a 0-100 bounded range of values.
