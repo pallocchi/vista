@@ -108,6 +108,39 @@ The WMA(2) of the oldest period is NaN
 
 More? see [Fidelity](https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/wma)
 
+## Volume Weighted Moving Average (VWMA)
+
+The Volume-weighted Moving Average (VWMA) emphasizes volume by weighing prices based on the amount of trading activity in a given period of time. Users can set the length, the source and an offset. Prices with heavy trading activity get more weight than prices with light trading activity. In periods of low market volume, the SMA and the VWMA are close in value.
+
+**Formula**
+
+$vwma(x,n) = sma(x * volume, n) / sma(volume, n)$
+
+where:
+
+$x$ = the price series
+
+$n$ = the number of periods (typically `20`)
+
+**Code!**
+
+```kotlin
+val close = seriesOf(1, 2, 3)
+val volume = seriesOf(1, 2, 3)
+
+val vwma = vwma(close, volume, 2)
+
+println("The VWMA(2) of current period is ${vwma[0]}")
+println("The VWMA(2) of previous period is ${vwma[1]}")
+println("The VWMA(2) of the oldest period is ${vwma[2]}")
+```
+
+```console
+The VWMA(2) of current period is 3.33
+The VWMA(2) of previous period is 2.33
+The VWMA(2) of the oldest period is NaN
+```
+
 ## Hull Moving Average (HMA)
 
 A hull moving average (HMA), developed by Alan Hull, is an extremely fast and smooth moving average. The HMA solves the age old dilemma of making a moving average more responsive to current price activity whilst maintaining curve smoothness. In fact the HMA almost eliminates lag altogether and manages to improve smoothing at the same time.
