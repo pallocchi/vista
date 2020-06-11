@@ -211,3 +211,40 @@ The %D of current period is 81.22...
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/s/stochrsi.asp)
+
+## Williams %R
+
+Williams %R, also known as the Williams Percent Range, is a type of momentum indicator that moves between 0 and -100 and measures overbought and oversold levels. The Williams %R may be used to find entry and exit points in the market. The indicator is very similar to the Stochastic oscillator and is used in the same way. It was developed by Larry Williams and it compares a stock’s closing price to the high-low range over a specific period, typically 14 days or periods.
+
+**Formula**
+
+$\%R = \bigg(\frac{highest(high,n) - close}{highest(high,n) - lowest(low,n)}\bigg) * -100$
+
+where:
+
+$n$ = the number of periods (typically `14`)
+
+$highest(high,n)$ = the highest high price in $n$ periods back
+
+$lowest(low,n)$ = the lowest low price in $n$ periods back
+
+**Code!**
+
+```kotlin
+val close = seriesOf(1..20)
+
+val high = close * 1.5
+val low = close * 0.5
+
+val r = williams(close, high, low, 14)
+
+println("The %R of current period is ${r[0]}")
+println("The %R of previous period is ${r[0]}")
+```
+
+```output
+The %R of current period is -37.73...
+The %R of previous period is -37.25...
+```
+
+More? see [Investopedia](https://www.investopedia.com/terms/w/williamsr.asp)

@@ -181,6 +181,7 @@ Simple, right? now you can use your new indicator just like `macd(close)`. Of co
 | [Volume Rate of Change (VROC)][vroc]                     | Volume     | -       | ✔       | 0.0.1 |
 | [Volume Weighted Moving Average (VWMA)][vwma]            | Trend      | -       | ✔       | 0.1.0 |
 | [Weighted Moving Average (WMA)][wma]                     | Trend      | -       | ✔       | 0.0.1 |
+| [Williams %R][williams]                                  | Momentum   | ✔       | -       | 0.1.0 |
 
 # About rules and strategies
 
@@ -221,3 +222,4 @@ If you are familiar with [Pine Script][ps], you can also use the `crossover()` a
 [vroc]: volume?id=volume-rate-of-change-vroc
 [vwma]: trend?id=volume-weighted-moving-average-vwma
 [wma]: trend?id=weighted-moving-average-wma
+[williams]: momentum?id=williams-r
