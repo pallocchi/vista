@@ -216,3 +216,42 @@ The histogram line of current period is 0
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/m/macd.asp)
+
+## Elder-Ray Index
+
+The Elder-Ray Index is a technical indicator developed by Dr. Alexander Elder that measures the amount of buying and selling pressure in a market. This indicator consists of three separate indicators known as "bull power" and "bear power", which are derived from a 13-period exponential moving average (EMA). The three indicator help traders determine the trend direction and isolate spots to enter and exit trades.
+
+**Formula**
+
+$BullBearPower = BullPower + BearPower$
+
+$BullPower = high - ema(close, n)$
+
+$BearPower = low - ema(close, n)$
+
+where:
+
+$n$ = the number of periods of the EMA (typically `13`)
+
+**Code!**
+
+```kotlin
+val close = seriesOf(1..20)
+
+val high = close * 1.5
+val low = close * 0.5
+
+val (bb, bull, bear) = eri(close, high, low, 13)
+
+println("The bull-bear power of current period is ${bb[0]}")
+println("The bull power of current period is ${bull[0]}")
+println("The bear power of current period is ${bear[0]}")
+```
+
+```output
+The bull-bear power of current period is 12
+The bull power of current period is 16
+The bear power of current period is -4
+```
+
+More? see [Investopedia](https://www.investopedia.com/terms/e/elderray.asp)

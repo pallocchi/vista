@@ -168,6 +168,7 @@ Simple, right? now you can use your new indicator just like `macd(close)`. Of co
 | [Bollinger Bands®][bb]                                   | Volatility | -       | ✔       | 0.0.1 |
 | [Chainkin Oscillator][chaikin]                           | Volume     | ✔       | -       | 0.0.1 |
 | [Commodity Channel Index (CCI)][cci]                     | Momentum   | ✔       | -       | 0.0.1 |
+| [Elder-Ray Index][eri]                                   | Trend      | -       | ✔       | 0.1.0 |
 | [Exponential Moving Average (EMA)][ema]                  | Trend      | -       | ✔       | 0.0.1 |
 | [Hull Moving Average (HMA)][hma]                         | Trend      | -       | ✔       | 0.0.1 |
 | [Momentum (MOM)][mom]                                    | Momentum   | ✔       | -       | 0.1.0 |
@@ -210,6 +211,7 @@ If you are familiar with [Pine Script][ps], you can also use the `crossover()` a
 [chaikin]: volume?id=chainkin-oscillator
 [cci]: momentum?id=commodity-channel-index-cci
 [ema]: trend?id=exponential-moving-average-ema
+[eri]: trend?id=elder-ray-index
 [hma]: trend?id=hull-moving-average-hma
 [macd]: trend?id=moving-average-convergencedivergence-macd
 [mom]: momentum?id=momentum-indicator-mom
