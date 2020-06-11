@@ -164,17 +164,20 @@ Simple, right? now you can use your new indicator just like `macd(close)`. Of co
 |----------------------------------------------------------|:----------:|:-------:|:-------:|:-----:|
 | [Accumulation/Distribution (ADL)][adl]                   | Volume     | ✔       | -       | 0.0.1 |
 | [Average True Range (ATR)][atr]                          | Volatility | -       | ✔       | 0.0.1 |
+| [Awesome Oscillator (AO)][ao]                            | Momentum   | ✔       | -       | 0.1.0 |
 | [Bollinger Bands®][bb]                                   | Volatility | -       | ✔       | 0.0.1 |
 | [Chainkin Oscillator][chaikin]                           | Volume     | ✔       | -       | 0.0.1 |
 | [Commodity Channel Index (CCI)][cci]                     | Momentum   | ✔       | -       | 0.0.1 |
 | [Exponential Moving Average (EMA)][ema]                  | Trend      | -       | ✔       | 0.0.1 |
 | [Hull Moving Average (HMA)][hma]                         | Trend      | -       | ✔       | 0.0.1 |
+| [Momentum (MOM)][mom]                                    | Momentum   | ✔       | -       | 0.1.0 |
 | [Moving Average Convergence/Divergence (MACD)][macd]     | Trend      | ✔       | -       | 0.0.1 |
 | [On-Balance Volume (OBV)][obv]                           | Volume     | ✔       | -       | 0.0.1 |
 | [Relative Strength Index (RSI)][rsi]                     | Momentum   | ✔       | -       | 0.0.1 |
 | [Simple Moving Average (SMA)][sma]                       | Trend      | -       | ✔       | 0.0.1 |
 | [Standard Deviation][stdev]                              | Volatility | -       | ✔       | 0.0.1 |
 | [Stochastic Oscillator][stoch]                           | Momentum   | ✔       | -       | 0.0.1 |
+| [Stochastic RSI][stochrsi]                               | Momentum   | ✔       | -       | 0.1.0 |
 | [Volume Rate of Change (VROC)][vroc]                     | Volume     | -       | ✔       | 0.0.1 |
 | [Volume Weighted Moving Average (VWMA)][vwma]            | Trend      | -       | ✔       | 0.1.0 |
 | [Weighted Moving Average (WMA)][wma]                     | Trend      | -       | ✔       | 0.0.1 |
@@ -201,17 +204,20 @@ If you are familiar with [Pine Script][ps], you can also use the `crossover()` a
 
 [adl]: volume?id=accumulationdistribution-adl
 [atr]: volatility?id=average-true-range-atr
+[ao]: momentum?id=awesome-oscillator-ao
 [bb]: volatility?id=bollinger-bands®
 [chaikin]: volume?id=chainkin-oscillator
 [cci]: momentum?id=commodity-channel-index-cci
 [ema]: trend?id=exponential-moving-average-ema
 [hma]: trend?id=hull-moving-average-hma
 [macd]: trend?id=moving-average-convergencedivergence-macd
+[mom]: momentum?id=momentum-indicator-mom
 [obv]: volume?id=on-balance-volume-obv
 [rsi]: momentum?id=relative-strength-index-rsi
 [sma]: trend?id=simple-moving-average-sma
 [stdev]: volatility?id=standard-deviation
 [stoch]: momentum?id=stochastic-oscillator
+[stochrsi]: momentum?id=stochastic-rsi-stochrsi
 [vroc]: volume?id=volume-rate-of-change-vroc
 [vwma]: trend?id=volume-weighted-moving-average-vwma
 [wma]: trend?id=weighted-moving-average-wma

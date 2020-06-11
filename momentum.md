@@ -2,7 +2,7 @@
 
 Momentum is the measurement of the speed or velocity of price changes. These indicators identify the strength of a price movement, comparing the most recent closing price to a previous closing price from any time frame.
 
-## Awesome Oscillator
+## Awesome Oscillator (AO)
 
 The Awesome Oscillator (AO) is an indicator used to measure market momentum. AO calculates the difference between a 34-period simple moving average (SMA) and 5-period SMA. The simple moving averages that are used are not calculated using closing price but rather each bar's midpoints. AO is generally used to affirm trends or to anticipate possible reversals.
 
@@ -33,44 +33,37 @@ The AO of current period is 14.5
 
 More? see [Tradingview](https://www.tradingview.com/scripts/awesomeoscillator/?solution=43000501826)
 
-## Stochastic Oscillator
+## Momentum Indicator (MOM)
 
-A stochastic oscillator is a momentum indicator comparing a particular closing price of a security to a range of its prices over a certain period of time. The sensitivity of the oscillator to market movements is reducible by adjusting that time period or by taking a moving average of the result. It is used to generate overbought and oversold trading signals, utilizing a 0-100 bounded range of values.
+The Momentum Indicator (MOM) is a leading indicator measuring a security's rate-of-change. It compares the current price with the previous price from a number of periods ago.The ongoing plot forms an oscillator that moves above and below 0. It is a fully unbounded oscillator and has no lower or upper limit. Bullish and bearish interpretations are found by looking for divergences, centerline crossovers and extreme readings.
 
 **Formula**
 
-$\%K = \bigg(\frac{close - lowest(low,n)}{highest(high,n) - lowest(low,n)}\bigg) * 100$
-
-$\%D = sma(\%K,3)$
+$momentum(x,n) = x - x_n$
 
 where:
 
-$n$ = the number of periods (typically `14`)
+$x$ = the price of current period
 
-$highest(high,n)$ = the highest high price in $n$ periods back
+$x_n$ = the price of $n$ periods ago
 
-$lowest(low,n)$ = the lowest low price in $n$ periods back
+$n$ = the number of periods (typically `10`)
 
 **Code!**
 
 ```kotlin
 val close = seriesOf(1..20)
 
-val high  = close * 1.5
-val low   = close * 0.5
+val mom = mom(close, 10)
 
-val (k, d) = stoch(close, high, low)
-
-println("The %K of current period is ${k[0]}")
-println("The %D of current period is ${d[0]}")
+println("The MOM of current period is ${mom[0]}")
 ```
 
 ```output
-The %K of current period is 62.76...
-The %D of current period is 63.29...
+The MOM of current period is 10
 ```
 
-More? see [Investopedia](https://www.investopedia.com/terms/s/stochasticoscillator.asp)
+More? see [Tradingview](https://www.tradingview.com/ideas/momentum/)
 
 ## Commodity Channel Index (CCI)
 
@@ -141,3 +134,80 @@ The RSI(14) of current period is 100
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/r/rsi.asp)
+
+## Stochastic Oscillator
+
+A stochastic oscillator is a momentum indicator comparing a particular closing price of a security to a range of its prices over a certain period of time. The sensitivity of the oscillator to market movements is reducible by adjusting that time period or by taking a moving average of the result. It is used to generate overbought and oversold trading signals, utilizing a 0-100 bounded range of values.
+
+**Formula**
+
+$\%K = \bigg(\frac{close - lowest(low,n)}{highest(high,n) - lowest(low,n)}\bigg) * 100$
+
+$\%D = sma(\%K,3)$
+
+where:
+
+$n$ = the number of periods (typically `14`)
+
+$highest(high,n)$ = the highest high price in $n$ periods back
+
+$lowest(low,n)$ = the lowest low price in $n$ periods back
+
+**Code!**
+
+```kotlin
+val close = seriesOf(1..20)
+
+val high  = close * 1.5
+val low   = close * 0.5
+
+val (k, d) = stoch(close, high, low)
+
+println("The %K of current period is ${k[0]}")
+println("The %D of current period is ${d[0]}")
+```
+
+```output
+The %K of current period is 62.76...
+The %D of current period is 63.29...
+```
+
+More? see [Investopedia](https://www.investopedia.com/terms/s/stochasticoscillator.asp)
+
+## Stochastic RSI (StochRSI)
+
+The Stochastic RSI (StochRSI) is an indicator used in technical analysis that ranges between zero and one (or zero and 100 on some charting platforms) and is created by applying the [Stochastic oscillator](#stochastic-oscillator) formula to a set of relative strength index ([RSI](#relative-strength-index-rsi)) values rather than to standard price data. Using RSI values within the Stochastic formula gives traders an idea of whether the current RSI value is overbought or oversold.
+
+**Formula**
+
+$\%K = \bigg(\frac{rsi - lowest(rsi,m)}{highest(rsi,m) - lowest(rsi,m)}\bigg) * 100$
+
+$\%D = sma(\%K,3)$
+
+where:
+
+$rsi(x,n)$ = the RSI of $x$ series for $n$ periods back
+
+$highest(rsi,m)$ = the highest RSI in $m$ periods back
+
+$lowest(rsi,m)$ = the lowest RSI in $m$ periods back
+
+$n$ = the number of periods of the RSI (typically `14`)
+
+$m$ = the number of periods of the Stochastic oscillator (typically `14`)
+
+**Code!**
+
+```kotlin
+val (k, d) = stochrsi(close)
+
+println("The %K of current period is ${k[0]}")
+println("The %D of current period is ${d[0]}")
+```
+
+```output
+The %K of current period is 79.24...
+The %D of current period is 81.22...
+```
+
+More? see [Investopedia](https://www.investopedia.com/terms/s/stochrsi.asp)
