@@ -212,6 +212,47 @@ The %D of current period is 81.22...
 
 More? see [Investopedia](https://www.investopedia.com/terms/s/stochrsi.asp)
 
+## Ultimate Oscillator (UO)
+
+The Ultimate Oscillator (UO) is a technical indicator that was developed by Larry Williams in 1976 to measure the price momentum of an asset across multiple timeframes. By using the weighted average of three different timeframes the indicator has less volatility and fewer trade signals compared to other oscillators that rely on a single timeframe. Buy and sell signals are generated following divergences. The Ultimately Oscillator generates fewer divergence signals than other oscillators due to its multi-timeframe construction.
+
+**Formula**
+
+$UO = \bigg(\frac{(AVG_{n1} * 4) + (AVG_{n2} * 2) + AVG_{n3}}{4 + 2 + 1}\bigg) * 100$
+
+where:
+
+$AVG_n = (\sum_{i=1}^n BP) / (\small\sum_{i=1}^n TR)$
+
+$BP = close - min(low, close_1)$
+
+$TR$ = the true range
+
+$n1$ = the number of periods for first time frame (typically `7`)
+
+$n2$ = the number of periods for second time frame (typically `14`)
+
+$n3$ = the number of periods for third time frame (typically `28`)
+
+**Code!**
+
+```kotlin
+val close = seriesOf(1..30)
+
+val high = close * 1.5
+val low = close * 0.5
+
+val uo = uo(close, high, low)
+
+println("The UO of current period is ${uo[0]}")
+```
+
+```output
+The UO of current period is 50.0
+```
+
+More? see [Investopedia](https://www.investopedia.com/terms/u/ultimateoscillator.asp)
+
 ## Williams %R
 
 Williams %R, also known as the Williams Percent Range, is a type of momentum indicator that moves between 0 and -100 and measures overbought and oversold levels. The Williams %R may be used to find entry and exit points in the market. The indicator is very similar to the Stochastic oscillator and is used in the same way. It was developed by Larry Williams and it compares a stock’s closing price to the high-low range over a specific period, typically 14 days or periods.

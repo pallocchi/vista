@@ -158,7 +158,29 @@ Simple, right? now you can use your new indicator just like `macd(close)`. Of co
 
 ?> Vista only performs the calculation of the values when they are actually needed.
 
-### Built-in indicators
+Check the [Built-In indicators](#built-in-indicators) list for more info.
+
+# About rules and strategies
+
+Rules are the way to detect entry and exit signals. Let's suppose we want to implement a classic strategy of moving average crossovers. This strategy uses two simple moving averages (SMA) with different periods (slow and fast), and we want to go long whenever the 9-period SMA crosses over the 30-period SMA, and go short when the frist one crosses under the other. In order to do that, we have the `crossOver` and `crossUnder` rules, which are available in any series and we can use that in this way:
+
+```kotlin
+val fast = sma(close, 9)
+val slow = sma(close, 30)
+
+when {
+    fast crossOver slow -> print("I'm going long!")
+    fast crossUnder slow -> print("I'm going short!")
+}
+```
+
+Amazing! we've just implemented our very basic strategy.
+
+If you are familiar with [Pine Script][ps], you can also use the `crossover()` and `crossunder()` functions and it works in the same way (actually those functions use the previous ones under the covers). Take a look at the KDoc.
+
+# Built-in indicators
+
+These are the indicators available in Vista.
 
 | Name                                                     | Type       | Leading | Lagging | Since |
 |----------------------------------------------------------|:----------:|:-------:|:-------:|:-----:|
@@ -179,28 +201,11 @@ Simple, right? now you can use your new indicator just like `macd(close)`. Of co
 | [Standard Deviation][stdev]                              | Volatility | -       | ✔       | 0.0.1 |
 | [Stochastic Oscillator][stoch]                           | Momentum   | ✔       | -       | 0.0.1 |
 | [Stochastic RSI][stochrsi]                               | Momentum   | ✔       | -       | 0.1.0 |
+| [Ultimate Oscillator][uo]                                | Momentum   | ✔       | -       | 0.1.0 |
 | [Volume Rate of Change (VROC)][vroc]                     | Volume     | -       | ✔       | 0.0.1 |
 | [Volume Weighted Moving Average (VWMA)][vwma]            | Trend      | -       | ✔       | 0.1.0 |
 | [Weighted Moving Average (WMA)][wma]                     | Trend      | -       | ✔       | 0.0.1 |
 | [Williams %R][williams]                                  | Momentum   | ✔       | -       | 0.1.0 |
-
-# About rules and strategies
-
-Rules are the way to detect entry and exit signals. Let's suppose we want to implement a classic strategy of moving average crossovers. This strategy uses two simple moving averages (SMA) with different periods (slow and fast), and we want to go long whenever the 9-period SMA crosses over the 30-period SMA, and go short when the frist one crosses under the other. In order to do that, we have the `crossOver` and `crossUnder` rules, which are available in any series and we can use that in this way:
-
-```kotlin
-val fast = sma(close, 9)
-val slow = sma(close, 30)
-
-when {
-    fast crossOver slow -> print("I'm going long!")
-    fast crossUnder slow -> print("I'm going short!")
-}
-```
-
-Amazing! we've just implemented our very basic strategy.
-
-If you are familiar with [Pine Script][ps], you can also use the `crossover()` and `crossunder()` functions and it works in the same way (actually those functions use the previous ones under the covers). Take a look at the KDoc.
 
 [ps]: https://www.tradingview.com/pine-script-docs/en/v4/Introduction.html
 
@@ -221,6 +226,7 @@ If you are familiar with [Pine Script][ps], you can also use the `crossover()` a
 [stdev]: volatility?id=standard-deviation
 [stoch]: momentum?id=stochastic-oscillator
 [stochrsi]: momentum?id=stochastic-rsi-stochrsi
+[uo]: momentum?id=ultimate-oscillator-uo
 [vroc]: volume?id=volume-rate-of-change-vroc
 [vwma]: trend?id=volume-weighted-moving-average-vwma
 [wma]: trend?id=weighted-moving-average-wma
