@@ -3,3 +3,4 @@
 * [**Momentum indicators**](/momentum.md)
 * [**Volatility indicators**](/volatility.md)
 * [**Volume indicators**](/volume.md)
+* [**Ichimoku indicators**](/ichimoku.md)

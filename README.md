@@ -193,6 +193,7 @@ These are the indicators available in Vista.
 | [Elder-Ray Index][eri]                                   | Trend      | -       | ✔       | 0.1.0 |
 | [Exponential Moving Average (EMA)][ema]                  | Trend      | -       | ✔       | 0.0.1 |
 | [Hull Moving Average (HMA)][hma]                         | Trend      | -       | ✔       | 0.0.1 |
+| [Ichimoku Cloud][ichimoku]                               | Combined   | ✔       | -       | 0.1.0 |
 | [Momentum (MOM)][mom]                                    | Momentum   | ✔       | -       | 0.1.0 |
 | [Moving Average Convergence/Divergence (MACD)][macd]     | Trend      | ✔       | -       | 0.0.1 |
 | [On-Balance Volume (OBV)][obv]                           | Volume     | ✔       | -       | 0.0.1 |
@@ -218,6 +219,7 @@ These are the indicators available in Vista.
 [ema]: trend?id=exponential-moving-average-ema
 [eri]: trend?id=elder-ray-index
 [hma]: trend?id=hull-moving-average-hma
+[ichimoku]: ichimoku
 [macd]: trend?id=moving-average-convergencedivergence-macd
 [mom]: momentum?id=momentum-indicator-mom
 [obv]: volume?id=on-balance-volume-obv
