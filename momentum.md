@@ -17,18 +17,17 @@ $mid$ = $(high+low) / 2$
 **Code!**
 
 ```kotlin
-val close = seriesOf(1..20)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val high  = close * 1.5
-val low   = close * 0.5
+val ao = data.ao()
 
-val ao = ao(high, low)
-
-println("The AO of current period is ${ao[0]}")
+println("The AO of last period is ${ao[0]}")
+println("The AO of prev period is ${ao[1]}")
 ```
 
-```output
-The AO of current period is 14.5
+```console
+The AO of last period is 43.90
+The AO of prev period is 67.96
 ```
 
 More? see [Tradingview](https://www.tradingview.com/scripts/awesomeoscillator/?solution=43000501826)
@@ -52,15 +51,17 @@ $n$ = the number of periods (typically `10`)
 **Code!**
 
 ```kotlin
-val close = seriesOf(1..20)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val mom = mom(close, 10)
+val mom = data.mom()
 
-println("The MOM of current period is ${mom[0]}")
+println("The MOM(10) of last period is ${mom[0]}")
+println("The MOM(10) of prev period is ${mom[1]}")
 ```
 
-```output
-The MOM of current period is 10
+```console
+The MOM(10) of last period is 53.52
+The MOM(10) of prev period is 33.18
 ```
 
 More? see [Tradingview](https://www.tradingview.com/ideas/momentum/)
@@ -84,18 +85,24 @@ $n$ = the number of periods (typically `20`)
 **Code!**
 
 ```kotlin
-val series = seriesOf(1..25)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
+val cci = data.cci()
+
+println("The CCI(20) of last period is ${cci[0]}")
+println("The CCI(20) of prev period is ${cci[1]}")
+```
+
+```console
+The CCI(20) of last period is 53.52
+The CCI(20) of prev period is 33.18
+```
+
+or using the `cci()` function for a specific series:
+
+```kotlin
 val cci = cci(series, 20)
-
-println("The CCI(20) of current period is ${cci[0]}")
 ```
-
-```output
-The CCI(20) of current period is 126.67...
-```
-
-> Use the `typical()` series if you want to calculate the CCI of the typical price.
 
 More? see [Investopedia](https://www.investopedia.com/terms/c/commoditychannelindex.asp)
 
@@ -122,15 +129,17 @@ $rma$ = the [EMA](/trend?id=exponential-moving-average-ema) with $alpha = \frac{
 **Code!**
 
 ```kotlin
-val series = seriesOf(1..20)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val rsi = rsi(series, 14)
+val rsi = data.rsi()
 
-println("The RSI(14) of current period is ${rsi[0]}")
+println("The RSI(14) of last period is ${rsi[0]}")
+println("The RSI(14) of prev period is ${rsi[1]}")
 ```
 
-```output
-The RSI(14) of current period is 100
+```console
+The RSI(14) of last period is 58.90
+The RSI(14) of prev period is 54.91
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/r/rsi.asp)
@@ -156,20 +165,17 @@ $lowest(low,n)$ = the lowest low price in $n$ periods back
 **Code!**
 
 ```kotlin
-val close = seriesOf(1..20)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val high  = close * 1.5
-val low   = close * 0.5
+val (k, d) = data.stoch()
 
-val (k, d) = stoch(close, high, low)
-
-println("The %K of current period is ${k[0]}")
-println("The %D of current period is ${d[0]}")
+println("The %K of last period is ${k[0]}")
+println("The %D of last period is ${d[0]}")
 ```
 
-```output
-The %K of current period is 62.76...
-The %D of current period is 63.29...
+```console
+The %K of last period is 45.00
+The %D of prev period is 45.80
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/s/stochasticoscillator.asp)
@@ -199,15 +205,17 @@ $m$ = the number of periods of the Stochastic oscillator (typically `14`)
 **Code!**
 
 ```kotlin
-val (k, d) = stochrsi(close)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-println("The %K of current period is ${k[0]}")
-println("The %D of current period is ${d[0]}")
+val (k, d) = data.stochrsi()
+
+println("The %K of last period is ${k[0]}")
+println("The %D of last period is ${d[0]}")
 ```
 
-```output
-The %K of current period is 79.24...
-The %D of current period is 81.22...
+```console
+The %K of last period is 11.64
+The %D of prev period is 9.45
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/s/stochrsi.asp)
@@ -237,18 +245,17 @@ $n3$ = the number of periods for third time frame (typically `28`)
 **Code!**
 
 ```kotlin
-val close = seriesOf(1..30)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val high = close * 1.5
-val low = close * 0.5
+val uo = data.uo()
 
-val uo = uo(close, high, low)
-
-println("The UO of current period is ${uo[0]}")
+println("The UO of last period is ${uo[0]}")
+println("The UO of prev period is ${uo[1]}")
 ```
 
-```output
-The UO of current period is 50.0
+```console
+The UO of last period is 52.40
+The UO of prev period is 47.81
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/u/ultimateoscillator.asp)
@@ -272,20 +279,17 @@ $lowest(low,n)$ = the lowest low price in $n$ periods back
 **Code!**
 
 ```kotlin
-val close = seriesOf(1..20)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val high = close * 1.5
-val low = close * 0.5
+val wpr = data.wpr()
 
-val r = williams(close, high, low, 14)
-
-println("The %R of current period is ${r[0]}")
-println("The %R of previous period is ${r[0]}")
+println("The %R of last period is ${wpr[0]}")
+println("The %R of prev period is ${wpr[1]}")
 ```
 
-```output
-The %R of current period is -37.73...
-The %R of previous period is -37.25...
+```console
+The %R of last period is -42.51
+The %R of prev period is -63.62
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/w/williamsr.asp)

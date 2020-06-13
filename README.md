@@ -5,8 +5,10 @@
 Vista is a technical analysis library for Kotlin, inspired in [Pine Script][ps] from TradingView.
 
 ```kotlin
-val fast = sma(close, 9)
-val slow = sma(close, 30)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
+
+val fast = data.sma(9)
+val slow = data.sma(30)
 
 when {
     fast crossOver slow -> print("I'm going long!")
@@ -33,7 +35,13 @@ data.add(
 )
 ```
 
-Now you have your first bar! let's see what we can do with this in the next section.
+You can also load the data directly from a CSV file using the `dataOf()` function.
+
+```kotlin
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
+```
+
+Alright! you have the market data, now let's see what we can do with that in the next section.
 
 # Working with series
 
@@ -122,26 +130,26 @@ val change = x - x(1) // change is (2,3)
 
 Since `x(1)` returns a series, we are getting the difference between both series: the original and the [shifted](#shifting-series) one.
 
-## Basic series
+## Data series
 
-We saw the `seriesOf` function which is really useful to learn Vista, but it's more likely you use what we call the basic series, which are basically views of the [data](#data) you already know. These are the `open`, `high`, `low`, `close` and `volume` series, that can be created using the homonymous functions.
+We saw the `seriesOf` function which is really useful to learn Vista, but it's more likely you use what we call the data series, which are basically views of the [data](#data) you already know. These are the `open`, `high`, `low`, `close` and `volume` series.
 
 ```kotlin
-val open = open(data)       // series of close prices
-val high = high(data)       // series of high prices
-val low = low(data)         // series of low prices
-val close = close(data)     // series of close prices
-val volume = volume(data)   // series of volume prices
+data.open     // series of close prices
+data.high     // series of high prices
+data.low      // series of low prices
+data.close    // series of close prices
+data.volume   // series of volume prices
 ```
 
 Based on the previous series, we can derive another one called the typical price.
 
 $typical = \frac{\small close + high + low}{3}$
 
-Since this series is widely used, we have the built-in function `typical()`.
+Since this series is widely used, we have a data series for that.
 
 ```kotlin
-val typical = typical(data) // series of typical prices
+data.typical  // series of typical prices
 ```
 
 # Introduction to indicators
@@ -165,8 +173,10 @@ Check the [Built-In indicators](#built-in-indicators) list for more info.
 Rules are the way to detect entry and exit signals. Let's suppose we want to implement a classic strategy of moving average crossovers. This strategy uses two simple moving averages (SMA) with different periods (slow and fast), and we want to go long whenever the 9-period SMA crosses over the 30-period SMA, and go short when the frist one crosses under the other. In order to do that, we have the `crossOver` and `crossUnder` rules, which are available in any series and we can use that in this way:
 
 ```kotlin
-val fast = sma(close, 9)
-val slow = sma(close, 30)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
+
+val fast = data.sma(9)
+val slow = data.sma(30)
 
 when {
     fast crossOver slow -> print("I'm going long!")

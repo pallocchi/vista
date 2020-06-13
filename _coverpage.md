@@ -2,7 +2,7 @@
 
 ![logo](_media/logo.svg)
 
-# <small>0.1.0</small>
+# <small>0.2.0</small>
 
 > A modern technical analysis library for Kotlin.
 

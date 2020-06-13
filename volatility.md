@@ -27,19 +27,19 @@ $\sigma$ = the standard deviation
 **Code!**
 
 ```kotlin
-val series = seriesOf(1..50)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val (middle, upper, lower) = bb(series, 20, 2)
+val (middle, upper, lower) = data.bb()
 
-println("The middle band value of current period is ${middle[0]}")
-println("The upper band value of current period is ${upper[0]}")
-println("The lower band value of current period is ${lower[0]}")
+println("The middle band of last period is ${middle[0]}")
+println("The upper band of prev period is ${upper[1]}")
+println("The lower band of prev period is ${lower1]}")
 ```
 
 ```console
-The middle band value of current period is 40.50...
-The upper band value of current period is 52.03...
-The lower band value of current period is 28.97...
+The middle band of last period is 2394.18
+The upper band of last period is 2495.96
+The lower band of last period is 2292.41
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/b/bollingerbands.asp)
@@ -64,20 +64,17 @@ $close_1$ = the close price of previous period
 **Code!**
 
 ```kotlin
-val close = seriesOf(1..20)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val high  = close * 1.5
-val low   = close * 0.5
+val wpr = data.atr()
 
-val atr = atr(close, high, low, 14)
-
-println("The ATR(14) of current period is ${atr[0]}")
-println("The ATR(14) of previous value is ${atr[1]}")
+println("The ATR(14) of last period is ${atr[0]}")
+println("The ATR(14) of prev period is ${atr[1]}")
 ```
 
-```output
-The ATR(14) of current period is 11.17...
-The ATR(14) of previous period is 10.49...
+```console
+The ATR(14) of last period is 64.11
+The ATR(14) of prev period is 65.64
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/a/atr.asp)
@@ -97,17 +94,17 @@ $\mu$ (mean) $=\frac{\small x_0 + x_2 + ... + x_n}{n}$
 **Code!**
 
 ```kotlin
-val series = seriesOf(1, 2, 4)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val stdev = stdev(series, 2)
+val stdev = data.stdev(20)
 
-println("The standard deviation of current period is ${stdev[0]}")
-println("The standard deviation of previous period is ${stdev[1]}")
+println("The standard deviation of last period is ${stdev[0]}")
+println("The standard deviation of prev period is ${stdev[1]}")
 ```
 
 ```console
-The standard deviation of current period is 1
-The standard deviation of previous period is 0.5
+The standard deviation of last period is 50.89
+The standard deviation of prev period is 52.82
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/s/standarddeviation.asp)

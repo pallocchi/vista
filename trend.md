@@ -19,19 +19,23 @@ $n$ = the number of periods
 **Code!**
 
 ```kotlin
-val series = seriesOf(1, 2, 3)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val sma = sma(series, 2)
+val sma = data.sma(9)
 
-println("The SMA(2) of current period is ${sma[0]}")
-println("The SMA(2) of previous period is ${sma[1]}")
-println("The SMA(2) of the oldest period is ${sma[2]}")
+println("The SMA(9) of last period is ${sma[0]}")
+println("The SMA(9) of prev period is ${sma[1]}")
 ```
 
 ```console
-The SMA(2) of current period is 2.5
-The SMA(2) of previous period is 1.5
-The SMA(2) of the oldest period is NaN
+The SMA(9) of last period is 2436.99
+The SMA(9) of prev period is 2433.36
+```
+
+or using the `sma()` function for a specific series:
+
+```kotlin
+val sma = sma(series, 9)
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/s/sma.asp)
@@ -55,19 +59,23 @@ $n$ = the number of periods
 **Code!**
 
 ```kotlin
-val series = seriesOf(1, 2, 3)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val ema = ema(series, 2)
+val ema = data.ema(9)
 
-println("The EMA(2) of current period is ${ema[0]}")
-println("The EMA(2) of previous period is ${ema[1]}")
-println("The EMA(2) of the oldest period is ${ema[2]}")
+println("The EMA(9) of last period is ${ema[0]}")
+println("The EMA(9) of prev period is ${ema[1]}")
 ```
 
 ```console
-The EMA(2) of current period is 2.5
-The EMA(2) of previous period is 1.5
-The EMA(2) of the oldest period is NaN
+The EMA(9) of last period is 2423.31
+The EMA(9) of prev period is 2418.55
+```
+
+or using the `ema()` function for a specific series:
+
+```kotlin
+val ema = ema(series, 9)
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/e/ema.asp)
@@ -91,19 +99,23 @@ $n$ = the number of periods
 **Code!**
 
 ```kotlin
-val series = seriesOf(1, 2, 3)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val wma = wma(series, 2)
+val wma = data.wma(9)
 
-println("The WMA(2) of current period is ${wma[0]}")
-println("The WMA(2) of previous period is ${wma[1]}")
-println("The WMA(2) of the oldest period is ${wma[2]}")
+println("The WMA(9) of last period is ${wma[0]}")
+println("The WMA(9) of prev period is ${wma[1]}")
 ```
 
 ```console
-The WMA(2) of current period is 2.67
-The WMA(2) of previous period is 1.67
-The WMA(2) of the oldest period is NaN
+The WMA(9) of last period is 2430.76
+The WMA(9) of prev period is 2428.96
+```
+
+or using the `wma()` function for a specific series:
+
+```kotlin
+val wma = wma(series, 9)
 ```
 
 More? see [Fidelity](https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/wma)
@@ -125,20 +137,23 @@ $n$ = the number of periods (typically `20`)
 **Code!**
 
 ```kotlin
-val close = seriesOf(1, 2, 3)
-val volume = seriesOf(1, 2, 3)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val vwma = vwma(close, volume, 2)
+val vwma = data.vwma(20)
 
-println("The VWMA(2) of current period is ${vwma[0]}")
-println("The VWMA(2) of previous period is ${vwma[1]}")
-println("The VWMA(2) of the oldest period is ${vwma[2]}")
+println("The VWMA(20) of last period is ${vwma[0]}")
+println("The VWMA(20) of prev period is ${vwma[1]}")
 ```
 
 ```console
-The VWMA(2) of current period is 3.33
-The VWMA(2) of previous period is 2.33
-The VWMA(2) of the oldest period is NaN
+The VWMA(20) of last period is 2387.60
+The VWMA(20) of prev period is 2394.71
+```
+
+or using the `vwma()` function for a specific series:
+
+```kotlin
+val vwma = vwma(series, 20)
 ```
 
 ## Hull Moving Average (HMA)
@@ -158,19 +173,23 @@ $n$ = the number of periods
 **Code!**
 
 ```kotlin
-val series = seriesOf(1, 2, 3)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val hma = hma(series, 2)
+val hma = data.hma(9)
 
-println("The HMA(2) of current period is ${hma[0]}")
-println("The HMA(2) of previous period is ${hma[1]}")
-println("The HMA(2) of the oldest period is ${hma[2]}")
+println("The HMA(9) of last period is ${hma[0]}")
+println("The HMA(9) of prev period is ${hma[1]}")
 ```
 
 ```console
-The HMA(2) of current period is 3.33
-The HMA(2) of previous period is 2.33
-The HMA(2) of the oldest period is NaN
+The HMA(9) of last period is 2405.99
+The HMA(9) of prev period is 2407.17
+```
+
+or using the `hma()` function for a specific series:
+
+```kotlin
+val hma = hma(series, 9)
 ```
 
 More? see [Alan Hull](https://alanhull.com/hull-moving-average)
@@ -200,20 +219,25 @@ $c$ = the number of periods of the signal line (typically `9`)
 **Code!**
 
 ```kotlin
-val series = seriesOf(1..50)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val (macd, signal, hist) = macd(series, 12, 26, 9)
+val (macd, signal, hist) = data.macd()
 
-println("The MACD of current period is ${macd[0]}")
-println("The signal line of current period is ${signal[0]}")
-println("The histogram line of current period is ${hist[0]}")
+println("The MACD(12,26,9) of last period is ${macd[0]} ${signal[0]} ${hist[0]}")
+println("The MACD(12,26,9) of prev period is ${macd[1]} ${signal[1]} ${hist[1]}")
 ```
 
-```output
-The MACD of current period is 7
-The signal line of current period is 7
-The histogram line of current period is 0
+```console
+The MACD(12,26,9) of last period is 48.39 59.15 -10.76
+The MACD(12,26,9) of prev period is 49.76 61.84 -12.08
 ```
+
+or using the `macd()` function for a specific series:
+
+```kotlin
+val (macd, signal, hist) = macd(series)
+```
+
 
 More? see [Investopedia](https://www.investopedia.com/terms/m/macd.asp)
 
@@ -236,22 +260,19 @@ $n$ = the number of periods of the EMA (typically `13`)
 **Code!**
 
 ```kotlin
-val close = seriesOf(1..20)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val high = close * 1.5
-val low = close * 0.5
+val (bb, bull, bear) = data.eri()
 
-val (bb, bull, bear) = eri(close, high, low, 13)
-
-println("The bull-bear power of current period is ${bb[0]}")
-println("The bull power of current period is ${bull[0]}")
-println("The bear power of current period is ${bear[0]}")
+println("The Bull-Bear of last period is ${bb[0]}")
+println("The Bull Power of last period is ${bull[0]}")
+println("The Bear Power of last period is ${bear[0]}")
 ```
 
-```output
-The bull-bear power of current period is 12
-The bull power of current period is 16
-The bear power of current period is -4
+```console
+The Bull-Bear of last period is 9.51
+The Bull Power of last period is 26.84
+The Bear Power of last period is -17.33
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/e/elderray.asp)

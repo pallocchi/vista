@@ -21,21 +21,17 @@ $MFV$ = the money flow volume
 **Code!**
 
 ```kotlin
-val close = seriesOf(1..20)
-val volume = seriesOf(1..20)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val high = close * 2
-val low = close * 0.5
+val adl = data.adl()
 
-val adl = accdist(close, high, low, volume)
-
-println("The ADL of current period is ${adl[0]}")
-println("The ADL of previous period is ${adl[1]}")
+println("The ADL of last period is ${adl[0]}")
+println("The ADL of prev period is ${adl[1]}")
 ```
 
-```output
-The ADL of current period is -69.99...
-The ADL of previous period is -63.33...
+```console
+The ADL of last period is 95938647.55
+The ADL of prev period is 92409318.55
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/a/accumulationdistribution.asp)
@@ -55,21 +51,17 @@ $ADL$ = the accumulation/distribution line
 **Code!**
 
 ```kotlin
-val close = seriesOf(1..20)
-val volume = seriesOf(1..20)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val high = close * 2
-val low = close * 0.5
+val co = data.co()
 
-val chaikin = chaikin(close, high, low, volume)
-
-println("The CO(3,10) of current period is ${chaikin[0]}")
-println("The CO(3,10) of previous period is ${chaikin[1]}")
+println("The CO of last period is ${co[0]}")
+println("The CO of prev period is ${co[1]}")
 ```
 
-```output
-The CO(3,10) of current period is -17.28...
-The CO(3,10) of previous period is -16.20...
+```console
+The CO of last period is 2037608.82
+The CO of prev period is 993580.54
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/c/chaikinoscillator.asp)
@@ -98,18 +90,17 @@ $OBV_1$ = the on-balance volume of previous period
 **Code!**
 
 ```kotlin
-val close = seriesOf(1, 2, 1)
-val volume = seriesOf(1, 2, 1)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val obv = obv(close, volume)
+val obv = data.obv()
 
-println("The OBV of current period is ${obv[0]}")
-println("The OBV of previous period is ${obv[1]}")
+println("The OBV of last period is ${obv[0]}")
+println("The OBV of prev period is ${obv[1]}")
 ```
 
-```output
-The OBV of current period is 1
-The OBV of previous period is 2
+```console
+The OBV of last period is 92557338.00
+The OBV of prev period is 89028009.00
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/o/onbalancevolume.asp)
@@ -131,17 +122,17 @@ $volume_n$ = the volume of `n` periods back
 **Code!**
 
 ```kotlin
-val volume = seriesOf(1..20)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val vroc = roc(volume, 14)
+val vroc = data.vroc(25)
 
-println("The VROC of current period is ${vroc[0]}")
-println("The VROC of previous period is ${vroc[1]}")
+println("The VROC(25) of last period is ${vroc[0]}")
+println("The VROC(25) of prev period is ${vroc[1]}")
 ```
 
-```output
-The VROC of current period is 233.33...
-The VROC of previous period is 280
+```console
+The VROC(25) of last period is -30.34
+The VROC(25) of prev period is -24.30
 ```
 
 More? see [Investopedia](https://www.investopedia.com/articles/technical/02/091002.asp)

@@ -19,18 +19,17 @@ $lowest(low,9)$ = the lowest low price in 9 periods back
 **Code!**
 
 ```kotlin
-val low = seriesOf(1..100)
-val high = seriesOf(2..101)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val ichimoku = ichimoku(high, low, 9, 26, 52, 26)
+val ic = data.ichimoku()
 
-println("The Tenkan-Sen of current period is ${ichimoku.ts[0]}")
-println("The Tenkan-Sen of previous period is ${ichimoku.ts[1]}")
+println("The Tenkan-Sen of last period is ${ic.ts[0]}")
+println("The Tenkan-Sen of prev period is ${ic.ts[1]}")
 ```
 
-```output
-The Tenkan-Sen of current period is 96.5
-The Tenkan-Sen of previous period is 95.5
+```console
+The Tenkan-Sen of last period is 2427.73
+The Tenkan-Sen of prev period is 2427.73
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/t/tenkansen.asp)
@@ -53,18 +52,17 @@ $lowest(low,26)$ = the lowest low price in 26 periods back
 **Code!**
 
 ```kotlin
-val low = seriesOf(1..100)
-val high = seriesOf(2..101)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val ichimoku = ichimoku(high, low, 9, 26, 52, 26)
+val ic = data.ichimoku()
 
-println("The Kijun-Sen of current period is ${ichimoku.ks[0]}")
-println("The Kijun-Sen of previous period is ${ichimoku.ks[1]}")
+println("The Kijun-Sen of last period is ${ic.ks[0]}")
+println("The Kijun-Sen of prev period is ${ic.ks[1]}")
 ```
 
-```output
-The Kijun-Sen of current period is 88.0
-The Kijun-Sen of previous period is 87.0
+```console
+The Kijun-Sen of last period is 2390.92
+The Kijun-Sen of prev period is 2390.92
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/k/kijunsen.asp)
@@ -80,18 +78,17 @@ $SSA = \frac{1}{2} * [TenkanSen + KijunSen]$
 **Code!**
 
 ```kotlin
-val low = seriesOf(1..100)
-val high = seriesOf(2..101)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val ichimoku = ichimoku(high, low, 9, 26, 52, 26)
+val ic = data.ichimoku()
 
-println("The Senkou Span A of current period is ${ichimoku.ssa[0]}")
-println("The Senkou Span A of previous period is ${ichimoku.ssa[1]}")
+println("The Senkou Span A of last period is ${ic.ssa[0]}")
+println("The Senkou Span A of prev period is ${ic.ssa[1]}")
 ```
 
-```output
-The Senkou Span A of current period is 67.25
-The Senkou Span A of previous period is 66.25
+```console
+The Senkou Span A of last period is 2176.25
+The Senkou Span A of prev period is 2157.23
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/s/senkouspana.asp)
@@ -113,18 +110,17 @@ $lowest(low,52)$ = the lowest low price in 52 periods back
 **Code!**
 
 ```kotlin
-val low = seriesOf(1..100)
-val high = seriesOf(2..101)
+val data = dataOf("https://bulltimate.github.io/vista/amzn.csv")
 
-val ichimoku = ichimoku(high, low, 9, 26, 52, 26)
+val ic = data.ichimoku()
 
-println("The Senkou Span B of current period is ${ichimoku.ssb[0]}")
-println("The Senkou Span B of previous period is ${ichimoku.ssb[1]}")
+println("The Senkou Span B of last period is ${ic.ssb[0]}")
+println("The Senkou Span B of prev period is ${ic.ssb[1]}")
 ```
 
-```output
-The Senkou Span B of current period is 50.0
-The Senkou Span B of previous period is 49.0
+```console
+The Senkou Span B of last period is 2043.52
+The Senkou Span B of prev period is 2043.52
 ```
 
 More? see [Investopedia](https://www.investopedia.com/terms/s/senkouspanb.asp)
